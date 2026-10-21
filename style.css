@@ -1,0 +1,154 @@
+/* ВКонтакте 2015: скин поверх vk.ru.
+   Всё привязано к html.vk2015, поэтому скин можно выключить кликом по иконке расширения.
+   Селекторы подобраны по памяти и по документации, живую вёрстку vk.ru я не видел:
+   если какой-то блок выглядит не так, его селектор правится в разделах ниже. */
+
+/* ---------- 1. Цвета и шрифт через переменные ВК (самый устойчивый способ) ---------- */
+
+html.vk2015,
+html.vk2015[scheme],
+html.vk2015 body,
+html.vk2015 body[scheme],
+html.vk2015 [scheme] {
+  color-scheme: light !important;
+
+  /* шрифт */
+  --vkui--font_family_base: Tahoma, Verdana, Arial, sans-serif !important;
+  --vkui--font_family_accent: Tahoma, Verdana, Arial, sans-serif !important;
+
+  /* фон и текст */
+  --background_page: #fff !important;
+  --background_content: #fff !important;
+  --background_light: #f7f7f7 !important;
+  --background_highlighted: #e1e7ed !important;
+  --text_primary: #000 !important;
+  --text_secondary: #656565 !important;
+  --text_subhead: #656565 !important;
+  --text_name: #2b587a !important;
+  --text_link: #2a5885 !important;
+  --accent: #2a5885 !important;
+  --separator_common: #dae1e8 !important;
+  --separator_alpha: #dae1e8 !important;
+
+  /* шапка */
+  --header_background: #45668e !important;
+  --header_text: #fff !important;
+  --header_search_background: #3a5a80 !important;
+
+  /* кнопки */
+  --button_primary_background: #6d8fb3 !important;
+  --button_primary_foreground: #fff !important;
+  --button_secondary_background: #e5ebf1 !important;
+  --button_secondary_foreground: #55677d !important;
+
+  /* то же самое для VKUI */
+  --vkui--color_background: #fff !important;
+  --vkui--color_background_content: #fff !important;
+  --vkui--color_background_secondary: #f7f7f7 !important;
+  --vkui--color_background_secondary_alpha: #f7f7f7 !important;
+  --vkui--color_background_accent: #6d8fb3 !important;
+  --vkui--color_background_accent_themed: #6d8fb3 !important;
+  --vkui--color_text_primary: #000 !important;
+  --vkui--color_text_secondary: #656565 !important;
+  --vkui--color_text_subhead: #656565 !important;
+  --vkui--color_text_link: #2a5885 !important;
+  --vkui--color_text_accent: #2a5885 !important;
+  --vkui--color_text_accent_themed: #2a5885 !important;
+  --vkui--color_separator_primary: #dae1e8 !important;
+  --vkui--color_icon_accent: #6d8fb3 !important;
+  --vkui--color_icon_secondary: #8ba1b8 !important;
+  --vkui--size_border_radius--regular: 2px !important;
+  --vkui--size_border_radius_paper--regular: 2px !important;
+}
+
+html.vk2015 body {
+  background: #fff !important;
+  font: 13px/1.4 Tahoma, Verdana, Arial, sans-serif !important;
+}
+
+/* ---------- 2. Шапка ---------- */
+
+html.vk2015 #page_header_cont,
+html.vk2015 #page_header_wrap,
+html.vk2015 #page_header {
+  background: #45668e !important;
+  border-bottom: 1px solid #3b5b82 !important;
+  box-shadow: none !important;
+}
+
+html.vk2015 #ts_input,
+html.vk2015 #page_header input[type="search"],
+html.vk2015 #page_header input[type="text"] {
+  background: #3a5a80 !important;
+  color: #fff !important;
+  border-radius: 3px !important;
+}
+
+/* ---------- 3. Левое меню ---------- */
+
+html.vk2015 #side_bar a,
+html.vk2015 [class*="LeftMenuItem"] {
+  font-size: 13px !important;
+  color: #2a5885 !important;
+  border-radius: 2px !important;
+}
+
+html.vk2015 #side_bar a:hover,
+html.vk2015 [class*="LeftMenuItem"]:hover {
+  background: #e1e7ed !important;
+  text-decoration: none !important;
+}
+
+html.vk2015 #side_bar svg,
+html.vk2015 [class*="LeftMenu"] svg {
+  color: #8ba1b8 !important;
+}
+
+/* ---------- 4. Блоки, записи, карточки: плоские, с тонкой рамкой ---------- */
+
+html.vk2015 .page_block,
+html.vk2015 .wall_module .post,
+html.vk2015 ._post,
+html.vk2015 [class*="vkuiPaper"],
+html.vk2015 [class*="vkuiCard"] {
+  background: #fff !important;
+  border: 1px solid #dae1e8 !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+
+/* ---------- 5. Скругления: в 2015 году почти всё было прямоугольным, аватарки квадратные ---------- */
+
+html.vk2015 img,
+html.vk2015 a,
+html.vk2015 button,
+html.vk2015 input,
+html.vk2015 textarea,
+html.vk2015 [class*="Avatar"],
+html.vk2015 [class*="avatar"],
+html.vk2015 [class*="vkuiImageBase"] {
+  border-radius: 2px !important;
+}
+
+/* ---------- 6. Кнопки ---------- */
+
+html.vk2015 .FlatButton--primary {
+  background: #6d8fb3 !important;
+  color: #fff !important;
+  border-radius: 3px !important;
+}
+html.vk2015 .FlatButton--primary:hover { background: #7b9bbd !important; }
+
+html.vk2015 .FlatButton--secondary {
+  background: #e5ebf1 !important;
+  color: #55677d !important;
+  border-radius: 3px !important;
+}
+html.vk2015 .FlatButton--secondary:hover { background: #dae2ea !important; }
+
+/* ---------- 7. Убираем то, чего не было в 2015 году ---------- */
+
+html.vk2015 #stories_feed_wrap,
+html.vk2015 .stories_feed_wrap {
+  display: none !important;
+}

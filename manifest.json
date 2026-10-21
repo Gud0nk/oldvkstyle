@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "OLD-VK",
+  "version": "0.1.0",
+  "description": "Расширение для возвращения старого стиля вк",
+  "permissions": ["storage"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "Включить / выключить скин 2015" },
+  "content_scripts": [
+    {
+      "matches": ["*://vk.ru/*", "*://*.vk.ru/*", "*://vk.com/*", "*://*.vk.com/*"],
+      "css": ["style.css"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
