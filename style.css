@@ -418,3 +418,7 @@ html.vk2015 .ConvoMessage__info {
   font-size: 11px !important;
 }
 html.vk2015 .ConvoMessageBottomInfo__date { color: #939393 !important; }
+
+html.vk2015 .MessageActionsButtonContainer .MessageActionsDropdownButton--out {
+  mask: none !important;
+}
