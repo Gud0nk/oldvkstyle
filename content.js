@@ -27,7 +27,7 @@ const LABELS = {
 };
 
 // Где искать меню. Если ВК поменяет вёрстку, достаточно поправить этот список
-const MENU_SELECTORS = ["#side_bar", "#react_rootLeftMenuRoot", "[class*='LeftMenu']"];
+const MENU_SELECTORS = ["#layout_sidebar"];
 
 function renameMenu() {
   if (!document.documentElement.classList.contains(ROOT_CLASS)) return;

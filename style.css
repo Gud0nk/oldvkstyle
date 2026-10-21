@@ -9,7 +9,9 @@ html.vk2015,
 html.vk2015[scheme],
 html.vk2015 body,
 html.vk2015 body[scheme],
-html.vk2015 [scheme] {
+html.vk2015 [scheme],
+html.vk2015 .vkui__root,
+html.vk2015 .vkui__root[scheme] {
   color-scheme: light !important;
 
   /* шрифт */
@@ -148,7 +150,197 @@ html.vk2015 .FlatButton--secondary:hover { background: #dae2ea !important; }
 
 /* ---------- 7. Убираем то, чего не было в 2015 году ---------- */
 
-html.vk2015 #stories_feed_wrap,
-html.vk2015 .stories_feed_wrap {
+
+/* ======================================================================
+   Ниже селекторы по реальной структуре vk.ru (id и начала имён классов).
+   Хвосты вроде --Kp2FO у ВК меняются, поэтому берём [class*="Имя__часть"].
+   ====================================================================== */
+
+/* ---------- Логотип: в 2015 году это был просто текст ---------- */
+
+html.vk2015 a[class*="Logo__root"] {
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+}
+html.vk2015 a[class*="Logo__root"] svg { display: none !important; }
+html.vk2015 a[class*="Logo__root"]::after {
+  content: "ВКонтакте";
+  color: #fff;
+  font: bold 17px Arial, sans-serif;
+  letter-spacing: -0.3px;
+}
+
+/* ---------- Поиск в шапке ---------- */
+
+html.vk2015 [class*="TopSearchInput"] .vkuiSearch__field {
+  background: #3a5a80 !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+}
+html.vk2015 [class*="TopSearchInput"] .vkuiSearch__host,
+html.vk2015 [class*="TopSearchInput"] .vkuiSearch__controls,
+html.vk2015 [class*="TopSearchInput"] button {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html.vk2015 [class*="TopSearchInput"] input { color: #fff !important; }
+html.vk2015 [class*="TopSearchInput"] input::placeholder { color: #a9bdd3 !important; }
+html.vk2015 [class*="TopSearchInput"] svg { color: #a9bdd3 !important; }
+
+/* ---------- Левое меню ---------- */
+
+html.vk2015 #layout_sidebar li[id^="l_"] > a {
+  padding: 6px 8px !important;
+  min-height: 0 !important;
+  font-size: 13px !important;
+  color: #2a5885 !important;
+  border-radius: 2px !important;
+}
+html.vk2015 #layout_sidebar li[id^="l_"] > a:hover {
+  background: #e1e7ed !important;
+}
+html.vk2015 #layout_sidebar li[id^="l_"] svg { color: #8ba1b8 !important; }
+
+/* ---------- Аватарки: квадратные, без цветных колец ---------- */
+
+html.vk2015 [class*="Avatar"],
+html.vk2015 [class*="Avatar"] * {
+  border-radius: 2px !important;
+  clip-path: none !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+}
+
+/* ---------- Блок историй в ленте (первая секция центральной колонки) ---------- */
+
+html.vk2015 [class*="TwoColumnLayoutColumn"]:last-child > div > section:first-of-type {
   display: none !important;
+}
+
+/* ---------- Правая колонка ленты (Лента, Фотографии, Друзья...) ---------- */
+
+html.vk2015 [class*="TwoColumnLayoutColumn"]:first-child section {
+  border: 1px solid #dae1e8 !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+
+/* ======================================================================
+   Тёмная тема ВК (body[scheme="vkcom_dark"]) держит свои цвета в отдельных переменных.
+   Имена взяты из вашего списка; здесь они переведены в светлые цвета 2015 года.
+   ====================================================================== */
+
+html.vk2015,
+html.vk2015[scheme],
+html.vk2015 body,
+html.vk2015 body[scheme],
+html.vk2015 [scheme],
+html.vk2015 .vkui__root,
+html.vk2015 .vkui__root[scheme] {
+  --vkui--color_background: #fff !important;
+  --vkui--color_background--hover: #f7f7f7 !important;
+  --vkui--color_background--active: #f0f2f5 !important;
+  --vkui--color_background_content: #fff !important;
+  --vkui--color_background_content--hover: #fafbfc !important;
+  --vkui--color_background_content--active: #f4f6f8 !important;
+  --vkui--color_background_content_alpha: rgba(255,255,255,.92) !important;
+  --vkui--color_background_content_alpha--hover: rgba(255,255,255,.95) !important;
+  --vkui--color_background_content_alpha--active: rgba(255,255,255,.98) !important;
+  --vkui--color_background_secondary: #f7f7f7 !important;
+  --vkui--color_background_secondary--hover: #eef1f4 !important;
+  --vkui--color_background_secondary--active: #e5ebf1 !important;
+  --vkui--color_background_tertiary: #f0f2f5 !important;
+  --vkui--color_background_tertiary--hover: #e9ecf0 !important;
+  --vkui--color_background_tertiary--active: #e1e5ea !important;
+  --vkui--color_background_modal: #fff !important;
+  --vkui--color_background_modal--hover: #f7f7f7 !important;
+  --vkui--color_background_modal--active: #f0f2f5 !important;
+  --vkui--color_background_contrast_themed: #e5ebf1 !important;
+  --vkui--color_background_contrast_themed--hover: #dae2ea !important;
+  --vkui--color_background_contrast_themed--active: #cfd8e1 !important;
+  --vkui--color_background_info_tint: #e1ecf7 !important;
+  --vkui--color_background_info_tint--hover: #d8e6f3 !important;
+  --vkui--color_background_info_tint--active: #cfdfef !important;
+  --vkui--color_background_positive_tint: #e4f1e4 !important;
+  --vkui--color_background_positive_tint--hover: #dbebdb !important;
+  --vkui--color_background_positive_tint--active: #d2e5d2 !important;
+  --vkui--color_background_negative_tint: #f7e3e3 !important;
+  --vkui--color_background_negative_tint--hover: #f1d8d8 !important;
+  --vkui--color_background_negative_tint--active: #ebcdcd !important;
+  --vkui--color_background_warning: #fcf0d8 !important;
+  --vkui--color_background_warning--hover: #f9e8c6 !important;
+  --vkui--color_background_warning--active: #f5dfb4 !important;
+  --vkui--color_field_background: #fff !important;
+  --vkui--color_field_background--hover: #fff !important;
+  --vkui--color_field_background--active: #fafbfc !important;
+  --vkui--color_header_background: #45668e !important;
+  --vkui--color_header_background--hover: #4a6b93 !important;
+  --vkui--color_header_background--active: #3f5f86 !important;
+  --vkui--color_search_field_background: #f0f2f5 !important;
+  --vkui--color_search_field_background--hover: #e9ecf0 !important;
+  --vkui--color_search_field_background--active: #e1e5ea !important;
+  --vkui--color_write_bar_input_background: #fff !important;
+  --vkui--color_write_bar_input_background--hover: #fff !important;
+  --vkui--color_write_bar_input_background--active: #fafbfc !important;
+  --vkui--color_skeleton_from: #eef0f3 !important;
+  --vkui--color_skeleton_from--hover: #e9ecf0 !important;
+  --vkui--color_skeleton_from--active: #e1e5ea !important;
+  --vkui--color_skeleton_to: #f7f7f7 !important;
+  --vkui--color_skeleton_to--hover: #f0f2f5 !important;
+  --vkui--color_skeleton_to--active: #eef0f3 !important;
+  --vkui--color_separator_primary: #dae1e8 !important;
+  --vkui--color_separator_primary--hover: #cfd8e1 !important;
+  --vkui--color_separator_primary--active: #c4cfd9 !important;
+  --vkui--color_separator_secondary: #e7e8ec !important;
+  --vkui--color_separator_secondary--hover: #dfe3e8 !important;
+  --vkui--color_separator_secondary--active: #d6dbe1 !important;
+  --vkui--color_separator_primary2x: #dae1e8 !important;
+  --vkui--color_separator_primary2x--hover: #cfd8e1 !important;
+  --vkui--color_separator_primary2x--active: #c4cfd9 !important;
+  --vkui--color_image_placeholder: #e1e5ea !important;
+  --vkui--color_image_placeholder--hover: #dae0e6 !important;
+  --vkui--color_image_placeholder--active: #d3dae1 !important;
+  --vkui--vkontakte_color_header_search_field_background: #3a5a80 !important;
+  --vkui--vkontakte_color_header_search_field_background--hover: #3f6089 !important;
+  --vkui--vkontakte_color_header_search_field_background--active: #35557a !important;
+  --vkui--vkontakte_color_search_bar_background: #f0f2f5 !important;
+  --vkui--vkontakte_color_search_bar_background--hover: #e9ecf0 !important;
+  --vkui--vkontakte_color_search_bar_background--active: #e1e5ea !important;
+  --vkui--vkontakte_color_snippet_background: #f7f7f7 !important;
+  --vkui--vkontakte_color_snippet_background--hover: #f0f2f5 !important;
+  --vkui--vkontakte_color_snippet_background--active: #e9ecf0 !important;
+  --vkui--vkontakte_color_status_background: #f7f7f7 !important;
+  --vkui--vkontakte_color_status_background--hover: #f0f2f5 !important;
+  --vkui--vkontakte_color_status_background--active: #e9ecf0 !important;
+  --vkui--vkontakte_color_skeleton_shimmer_from: #eef0f3 !important;
+  --vkui--vkontakte_color_skeleton_shimmer_from--hover: #e9ecf0 !important;
+  --vkui--vkontakte_color_skeleton_shimmer_from--active: #e1e5ea !important;
+  --vkui--vkontakte_color_im_bubble_incoming: #f2f4f7 !important;
+  --vkui--vkontakte_color_im_bubble_incoming--hover: #eceff3 !important;
+  --vkui--vkontakte_color_im_bubble_incoming--active: #e5e9ee !important;
+  --vkui--vkontakte_color_im_bubble_incoming_alternate: #f2f4f7 !important;
+  --vkui--vkontakte_color_im_bubble_incoming_alternate--hover: #eceff3 !important;
+  --vkui--vkontakte_color_im_bubble_incoming_alternate--active: #e5e9ee !important;
+  --vkui--vkontakte_color_im_bubble_outgoing: #dfe8f1 !important;
+  --vkui--vkontakte_color_im_bubble_outgoing--hover: #d5e1ee !important;
+  --vkui--vkontakte_color_im_bubble_outgoing--active: #cbdaea !important;
+  --vkui--vkontakte_color_background_suggestions: #fff !important;
+  --vkui--vkontakte_color_background_suggestions--hover: #f7f7f7 !important;
+  --vkui--vkontakte_color_background_suggestions--active: #f0f2f5 !important;
+  --vkui--vkontakte_color_background_keyboard: #f0f2f5 !important;
+  --vkui--vkontakte_color_background_keyboard--hover: #e9ecf0 !important;
+  --vkui--vkontakte_color_background_keyboard--active: #e1e5ea !important;
+  --vkui--vkontakte_button_muted_background: #e5ebf1 !important;
+  --vkui--vkontakte_button_muted_background--hover: #dae2ea !important;
+  --vkui--vkontakte_button_muted_background--active: #cfd8e1 !important;
+  --vkui--vkontakte_color_tabbar_background: #f7f7f7 !important;
+  --vkui--vkontakte_color_tabbar_background--hover: #f0f2f5 !important;
+  --vkui--vkontakte_color_tabbar_background--active: #e9ecf0 !important;
+  --vkui--vkontakte_landing_background: #fff !important;
+  --vkui--vkontakte_landing_background--hover: #f7f7f7 !important;
+  --vkui--vkontakte_landing_background--active: #f0f2f5 !important;
+  --vkui--vkontakte_color_splash_screen_icon: #e1e5ea !important;
+  --vkui--vkontakte_color_splash_screen_icon--hover: #dae0e6 !important;
+  --vkui--vkontakte_color_splash_screen_icon--active: #d3dae1 !important;
 }
