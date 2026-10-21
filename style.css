@@ -1,11 +1,3 @@
-/* ВКонтакте 2015: скин поверх vk.ru.
-   Всё привязано к html.vk2015, поэтому скин можно выключить кликом по иконке расширения.
-   Селекторы подобраны по памяти и по документации, живую вёрстку vk.ru я не видел:
-   если какой-то блок выглядит не так, его селектор правится в разделах ниже. */
-
-/* ---------- 1. Цвета и шрифт через переменные ВК (самый устойчивый способ) ---------- */
-
-html.vk2015,
 html.vk2015[scheme],
 html.vk2015 body,
 html.vk2015 body[scheme],
@@ -13,12 +5,9 @@ html.vk2015 [scheme],
 html.vk2015 .vkui__root,
 html.vk2015 .vkui__root[scheme] {
   color-scheme: light !important;
-
-  /* шрифт */
   --vkui--font_family_base: Tahoma, Verdana, Arial, sans-serif !important;
   --vkui--font_family_accent: Tahoma, Verdana, Arial, sans-serif !important;
 
-  /* фон и текст */
   --background_page: #fff !important;
   --background_content: #fff !important;
   --background_light: #f7f7f7 !important;
@@ -32,18 +21,15 @@ html.vk2015 .vkui__root[scheme] {
   --separator_common: #dae1e8 !important;
   --separator_alpha: #dae1e8 !important;
 
-  /* шапка */
   --header_background: #45668e !important;
   --header_text: #fff !important;
   --header_search_background: #3a5a80 !important;
 
-  /* кнопки */
   --button_primary_background: #6d8fb3 !important;
   --button_primary_foreground: #fff !important;
   --button_secondary_background: #e5ebf1 !important;
   --button_secondary_foreground: #55677d !important;
 
-  /* то же самое для VKUI */
   --vkui--color_background: #fff !important;
   --vkui--color_background_content: #fff !important;
   --vkui--color_background_secondary: #f7f7f7 !important;
@@ -68,8 +54,6 @@ html.vk2015 body {
   font: 13px/1.4 Tahoma, Verdana, Arial, sans-serif !important;
 }
 
-/* ---------- 2. Шапка ---------- */
-
 html.vk2015 #page_header_cont,
 html.vk2015 #page_header_wrap,
 html.vk2015 #page_header {
@@ -85,8 +69,6 @@ html.vk2015 #page_header input[type="text"] {
   color: #fff !important;
   border-radius: 3px !important;
 }
-
-/* ---------- 3. Левое меню ---------- */
 
 html.vk2015 #side_bar a,
 html.vk2015 [class*="LeftMenuItem"] {
@@ -106,8 +88,6 @@ html.vk2015 [class*="LeftMenu"] svg {
   color: #8ba1b8 !important;
 }
 
-/* ---------- 4. Блоки, записи, карточки: плоские, с тонкой рамкой ---------- */
-
 html.vk2015 .page_block,
 html.vk2015 .wall_module .post,
 html.vk2015 ._post,
@@ -119,8 +99,6 @@ html.vk2015 [class*="vkuiCard"] {
   box-shadow: none !important;
 }
 
-/* ---------- 5. Скругления: в 2015 году почти всё было прямоугольным, аватарки квадратные ---------- */
-
 html.vk2015 img,
 html.vk2015 a,
 html.vk2015 button,
@@ -131,8 +109,6 @@ html.vk2015 [class*="avatar"],
 html.vk2015 [class*="vkuiImageBase"] {
   border-radius: 2px !important;
 }
-
-/* ---------- 6. Кнопки ---------- */
 
 html.vk2015 .FlatButton--primary {
   background: #6d8fb3 !important;
@@ -148,16 +124,6 @@ html.vk2015 .FlatButton--secondary {
 }
 html.vk2015 .FlatButton--secondary:hover { background: #dae2ea !important; }
 
-/* ---------- 7. Убираем то, чего не было в 2015 году ---------- */
-
-
-/* ======================================================================
-   Ниже селекторы по реальной структуре vk.ru (id и начала имён классов).
-   Хвосты вроде --Kp2FO у ВК меняются, поэтому берём [class*="Имя__часть"].
-   ====================================================================== */
-
-/* ---------- Логотип: в 2015 году это был просто текст ---------- */
-
 html.vk2015 a[class*="Logo__root"] {
   display: flex !important;
   align-items: center !important;
@@ -170,8 +136,6 @@ html.vk2015 a[class*="Logo__root"]::after {
   font: bold 17px Arial, sans-serif;
   letter-spacing: -0.3px;
 }
-
-/* ---------- Поиск в шапке ---------- */
 
 html.vk2015 [class*="TopSearchInput"] .vkuiSearch__field {
   background: #3a5a80 !important;
@@ -188,8 +152,6 @@ html.vk2015 [class*="TopSearchInput"] input { color: #fff !important; }
 html.vk2015 [class*="TopSearchInput"] input::placeholder { color: #a9bdd3 !important; }
 html.vk2015 [class*="TopSearchInput"] svg { color: #a9bdd3 !important; }
 
-/* ---------- Левое меню ---------- */
-
 html.vk2015 #layout_sidebar li[id^="l_"] > a {
   padding: 6px 8px !important;
   min-height: 0 !important;
@@ -202,8 +164,6 @@ html.vk2015 #layout_sidebar li[id^="l_"] > a:hover {
 }
 html.vk2015 #layout_sidebar li[id^="l_"] svg { color: #8ba1b8 !important; }
 
-/* ---------- Аватарки: квадратные, без цветных колец ---------- */
-
 html.vk2015 [class*="Avatar"],
 html.vk2015 [class*="Avatar"] * {
   border-radius: 2px !important;
@@ -212,24 +172,15 @@ html.vk2015 [class*="Avatar"] * {
   mask: none !important;
 }
 
-/* ---------- Блок историй в ленте (первый блок центральной колонки) ---------- */
-
 html.vk2015 [class*="TwoColumnLayoutColumn"]:last-child > div > div:first-child {
   display: none !important;
 }
-
-/* ---------- Правая колонка ленты (Лента, Фотографии, Друзья...) ---------- */
 
 html.vk2015 [class*="TwoColumnLayoutColumn"]:first-child section {
   border: 1px solid #dae1e8 !important;
   border-radius: 2px !important;
   box-shadow: none !important;
 }
-
-/* ======================================================================
-   Тёмная тема ВК (body[scheme="vkcom_dark"]) держит свои цвета в отдельных переменных.
-   Имена взяты из вашего списка; здесь они переведены в светлые цвета 2015 года.
-   ====================================================================== */
 
 html.vk2015,
 html.vk2015[scheme],
@@ -344,8 +295,6 @@ html.vk2015 .vkui__root[scheme] {
   --vkui--vkontakte_color_splash_screen_icon--hover: #dae0e6 !important;
   --vkui--vkontakte_color_splash_screen_icon--active: #d3dae1 !important;
 }
-
-/* ---------- Иконки левого меню: простые, как в старом ВК ---------- */
 
 html.vk2015 #layout_sidebar li[id^="l_"] > a [class*="ImageBase"] {
   flex: none !important;
