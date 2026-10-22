@@ -68,7 +68,8 @@ function decorateMessages() {  // это авы и имена в диалога�
   main.querySelectorAll("article.ConvoHistory__messageBlock").forEach((art) => {
     const out = art.classList.contains("ConvoHistory__messageBlock--out");
     if (group && !out) return;  // это чужие авы в группах рисует вк сам
-    if (art.querySelector('[class*="Avatar"]')) return;
+    const nativeAva = [...art.querySelectorAll('[class*="Avatar"]')].some((a) => !a.closest(".ConvoMessage"));
+    if (nativeAva) return;  // это родная ава есть, внутри сообщения (реакции) не считаем
 
     const wrap = art.querySelector(":scope > .ConvoHistory__messageWrapper");
     const content = art.querySelector(".ConvoMessage__content");

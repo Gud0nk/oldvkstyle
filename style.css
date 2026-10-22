@@ -507,3 +507,39 @@ html.vk2015 .vk2015-ava--group img {
 html.vk2015 .ConvoHistory__messageBlock > .vk2015-ava--group ~ .ConvoHistory__messageWrapper {
   margin-left: 40px !important;
 }
+
+html.vk2015 .ConvoComposer__button {  /* это иконки поля ввода*/
+  position: relative !important;
+}
+
+html.vk2015 .ConvoComposer__button svg {
+  display: none !important;
+}
+
+html.vk2015 .ConvoComposer__clip .ConvoComposer__button::before,
+html.vk2015 .ConvoComposer__button--stickersKeyboard .ConvoComposer__buttonIcon::before,
+html.vk2015 .ConvoComposer__inputPanel > .ConvoComposer__button .ConvoComposer__buttonIcon::before,
+html.vk2015 .ConvoComposer__sendButton--mic .ConvoComposer__buttonIcon::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  background: center / 22px 22px no-repeat;
+}
+
+html.vk2015 .ConvoComposer__button:hover::before,
+html.vk2015 .ConvoComposer__button:hover .ConvoComposer__buttonIcon::before {
+  filter: brightness(.8);
+}
+
+html.vk2015 .ConvoComposer__clip .ConvoComposer__button::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20width='24'%20height='24'%3E%3Cpath%20d='M20%2011.500l-8%208a5%205%200%200%201-7-7l8.500-8.500a3.300%203.300%200%200%201%204.700%204.700L9.700%2017.200a1.700%201.700%200%200%201-2.400-2.400L15%207'%20fill='none'%20stroke='%238ba1b8'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"); }
+html.vk2015 .ConvoComposer__button--stickersKeyboard .ConvoComposer__buttonIcon::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20width='24'%20height='24'%3E%3Ccircle%20cx='12'%20cy='12'%20r='9'%20fill='none'%20stroke='%238ba1b8'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Ccircle%20cx='9'%20cy='10'%20r='1.200'%20fill='%238ba1b8'/%3E%3Ccircle%20cx='15'%20cy='10'%20r='1.200'%20fill='%238ba1b8'/%3E%3Cpath%20d='M8%2014.500c1%201.800%202.500%202.600%204%202.600s3-.8%204-2.600'%20fill='none'%20stroke='%238ba1b8'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"); }
+html.vk2015 .ConvoComposer__inputPanel > .ConvoComposer__button .ConvoComposer__buttonIcon::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20width='24'%20height='24'%3E%3Ccircle%20cx='12'%20cy='12'%20r='9'%20fill='none'%20stroke='%238ba1b8'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Cpath%20d='M10%208.500l5.500%203.500-5.500%203.500z'%20fill='%238ba1b8'/%3E%3C/svg%3E"); }
+html.vk2015 .ConvoComposer__sendButton--mic .ConvoComposer__buttonIcon--mic::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20width='24'%20height='24'%3E%3Crect%20x='9'%20y='3'%20width='6'%20height='11'%20rx='3'%20fill='%238ba1b8'/%3E%3Cpath%20d='M6%2011a6%206%200%200%200%2012%200M12%2017.500V21'%20fill='none'%20stroke='%238ba1b8'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"); }
+html.vk2015 .ConvoComposer__sendButton--mic .ConvoComposer__buttonIcon--submit::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20width='24'%20height='24'%3E%3Cpath%20d='M3%2020l18-8L3%204v6l11%202-11%202z'%20fill='%236d8fb3'/%3E%3C/svg%3E"); }
+html.vk2015 .ConvoComposer__sendButton--mic .ConvoComposer__buttonIcon--delete::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20width='24'%20height='24'%3E%3Cpath%20d='M6%206l12%2012M18%206L6%2018'%20fill='none'%20stroke='%238ba1b8'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%20/%3E%3C/svg%3E"); }
+html.vk2015 .ConvoComposer__sendButton--mic .ConvoComposer__buttonIcon--edit::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20width='24'%20height='24'%3E%3Cpath%20d='M5%2012.500l4.500%204.500L19%207.500'%20fill='none'%20stroke='%236d8fb3'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"); }
+
