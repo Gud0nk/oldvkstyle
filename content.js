@@ -37,32 +37,20 @@ function renameMenu() {
   });
 }
 
-let groupCheck = { t: 0, value: false };
-
-function isGroupChat(main) {
-  const now = Date.now();
-  if (now - groupCheck.t > 1000) {
-    groupCheck = { t: now, value: /участник/i.test((main.textContent || "").slice(0, 400)) };
-  }
-  return groupCheck.value;
+function isGroupChat() {
+  const status = document.querySelector(".ConvoHeader__status");
+  return !!status && /участник/i.test(status.textContent);
 }
 
-const nudged = new WeakSet();
-
-function nudgeNativeAvatar(art) {  // это ава у вк внутри сообщения, слева от текста, класс не знаем, ищем по размеру и месту
-  if (nudged.has(art)) return;
-  const msg = art.querySelector(".ConvoMessage");
-  const content = art.querySelector(".ConvoMessage__content");
-  if (!msg || !content) return;
-  const textLeft = content.getBoundingClientRect().left;
-  const cands = [...msg.querySelectorAll("*")].filter((e) => {
-    const r = e.getBoundingClientRect();
-    return r.width >= 28 && r.width <= 60 && Math.abs(r.width - r.height) < 3 && r.left < textLeft - 2;
-  });
-  const top = cands.find((e) => !cands.includes(e.parentElement));
-  if (!top) return;
-  top.style.translate = "8px -4px";
-  nudged.add(art);
+function avatarSrc(box) {  // это картинка может быть тегом img или фоном
+  if (!box) return "";
+  const img = box.querySelector("img");
+  if (img && img.src) return img.src;
+  for (const el of [box, ...box.querySelectorAll("*")]) {
+    const m = getComputedStyle(el).backgroundImage.match(/url\(["']?(.+?)["']?\)/);
+    if (m) return m[1];
+  }
+  return "";
 }
 
 function decorateMessages() {  // это авы и имена в диалогах
@@ -70,22 +58,19 @@ function decorateMessages() {  // это авы и имена в диалога�
 
   const main = document.querySelector(".ConvoMain");
   if (!main) return;
-  const group = isGroupChat(main);
+  const group = isGroupChat();
 
-  const outside = (selector) =>
-    [...main.querySelectorAll(selector)].find((e) => !e.closest(".ConvoHistory"));
-
-  const peerImg = outside("img");
-  const peerSrc = peerImg ? peerImg.src : "";
-  const peerTitle = outside(".PeerTitle__title");
-  const peerName = (peerTitle && peerTitle.textContent.trim()) || "Собеседник";
+  const header = document.querySelector(".ConvoHeader");
+  const peerSrc = avatarSrc(header && header.querySelector(".ConvoHeader__avatar"));
+  const title = header && header.querySelector(".ConvoTitle__author");
+  const peerName = (title && title.textContent.trim()) || "Собеседник";
 
   const mine = [...document.querySelectorAll("#page_header img")].pop();
   const mySrc = mine ? mine.src : "";
 
   main.querySelectorAll("article.ConvoHistory__messageBlock").forEach((art) => {
     const out = art.classList.contains("ConvoHistory__messageBlock--out");
-    if (group && !out) { nudgeNativeAvatar(art); return; }  // это чужие авы в группах рисует вк сам
+    if (group && !out) return;  // это чужие авы в группах рисует вк сам
     const nativeAva = [...art.querySelectorAll('[class*="Avatar"]')].some((a) => !a.closest(".ConvoMessage"));
     if (nativeAva) return;  // это родная ава есть, внутри сообщения (реакции) не считаем
 
@@ -119,6 +104,9 @@ function decorateMessages() {  // это авы и имена в диалога�
     const label = out ? "Вы" : peerName;
     if (name.textContent !== label) name.textContent = label;
     name.style.display = first ? "block" : "none";
+
+    const msg = art.querySelector(".ConvoMessage");
+    if (msg) msg.classList.toggle("ConvoMessage--withAuthorName", first);  // это как у чужих: вк сам отодвигает фото и вложения под имя
   });
 }
 
