@@ -492,9 +492,9 @@ html.vk2015 [class*="TopSearchInput"] .vkuiSearch__field::after {  /* это л�
 }
 
 html.vk2015 .vk2015-ava--group {  /* это моя ава в группах рядом с родными*/
-  left: 0;
+  left: 8px;
   top: auto;
-  bottom: 4px;
+  bottom: 8px;
   width: 34px;
   height: 34px;
 }
@@ -543,3 +543,6 @@ html.vk2015 .ConvoComposer__sendButton--mic .ConvoComposer__buttonIcon--submit::
 html.vk2015 .ConvoComposer__sendButton--mic .ConvoComposer__buttonIcon--delete::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20width='24'%20height='24'%3E%3Cpath%20d='M6%206l12%2012M18%206L6%2018'%20fill='none'%20stroke='%238ba1b8'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'%20/%3E%3C/svg%3E"); }
 html.vk2015 .ConvoComposer__sendButton--mic .ConvoComposer__buttonIcon--edit::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20width='24'%20height='24'%3E%3Cpath%20d='M5%2012.500l4.500%204.500L19%207.500'%20fill='none'%20stroke='%236d8fb3'%20stroke-width='1.8'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"); }
 
+html.vk2015 .ConvoStack__author {  /* это ава автора в группе чуть от края*/
+  translate: 8px -2px !important;
+}

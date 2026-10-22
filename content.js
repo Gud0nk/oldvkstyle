@@ -47,6 +47,24 @@ function isGroupChat(main) {
   return groupCheck.value;
 }
 
+const nudged = new WeakSet();
+
+function nudgeNativeAvatar(art) {  // это ава у вк внутри сообщения, слева от текста, класс не знаем, ищем по размеру и месту
+  if (nudged.has(art)) return;
+  const msg = art.querySelector(".ConvoMessage");
+  const content = art.querySelector(".ConvoMessage__content");
+  if (!msg || !content) return;
+  const textLeft = content.getBoundingClientRect().left;
+  const cands = [...msg.querySelectorAll("*")].filter((e) => {
+    const r = e.getBoundingClientRect();
+    return r.width >= 28 && r.width <= 60 && Math.abs(r.width - r.height) < 3 && r.left < textLeft - 2;
+  });
+  const top = cands.find((e) => !cands.includes(e.parentElement));
+  if (!top) return;
+  top.style.translate = "8px -4px";
+  nudged.add(art);
+}
+
 function decorateMessages() {  // это авы и имена в диалогах
   if (!document.documentElement.classList.contains(ROOT_CLASS)) return;
 
@@ -67,7 +85,7 @@ function decorateMessages() {  // это авы и имена в диалога�
 
   main.querySelectorAll("article.ConvoHistory__messageBlock").forEach((art) => {
     const out = art.classList.contains("ConvoHistory__messageBlock--out");
-    if (group && !out) return;  // это чужие авы в группах рисует вк сам
+    if (group && !out) { nudgeNativeAvatar(art); return; }  // это чужие авы в группах рисует вк сам
     const nativeAva = [...art.querySelectorAll('[class*="Avatar"]')].some((a) => !a.closest(".ConvoMessage"));
     if (nativeAva) return;  // это родная ава есть, внутри сообщения (реакции) не считаем
 
