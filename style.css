@@ -1,4 +1,3 @@
-
 html.vk2015,
 html.vk2015[scheme],
 html.vk2015 body,
@@ -167,7 +166,7 @@ html.vk2015 #layout_sidebar li[id^="l_"] > a:hover {
 }
 html.vk2015 #layout_sidebar li[id^="l_"] svg { color: #8ba1b8 !important; }
 
-html.vk2015 [class*="Avatar"],
+html.vk2015 [class*="Avatar"],  /* это авы короче*/
 html.vk2015 [class*="Avatar"] * {
   border-radius: 2px !important;
   clip-path: none !important;
@@ -175,7 +174,7 @@ html.vk2015 [class*="Avatar"] * {
   mask: none !important;
 }
 
-html.vk2015 [class*="TwoColumnLayoutColumn"]:last-child > div > div:first-child {
+html.vk2015 [class*="TwoColumnLayoutColumn"]:last-child > div > div:first-child {  /* это блок историй в ленте*/
   display: none !important;
 }
 
@@ -299,7 +298,6 @@ html.vk2015 .vkui__root[scheme] {
   --vkui--vkontakte_color_splash_screen_icon--active: #d3dae1 !important;
 }
 
-
 html.vk2015 #layout_sidebar li[id^="l_"] > a [class*="ImageBase"] {
   flex: none !important;
   width: 16px !important;
@@ -383,17 +381,6 @@ html.vk2015 .ConvoMessage__content {
   background: transparent !important;
 }
 
-html.vk2015 .ConvoMessage__content > span.ku8sgr:first-child {
-  position: static !important;
-  display: block !important;
-  width: auto !important;
-  height: auto !important;
-  margin: 0 !important;
-  overflow: visible !important;
-  clip: auto !important;
-  clip-path: none !important;
-}
-
 html.vk2015 .ConvoMessageHeader__authorLink,
 html.vk2015 .PeerTitle__title {
   color: #2b587a !important;
@@ -419,6 +406,33 @@ html.vk2015 .ConvoMessage__info {
 }
 html.vk2015 .ConvoMessageBottomInfo__date { color: #939393 !important; }
 
-html.vk2015 .MessageActionsButtonContainer .MessageActionsDropdownButton--out {
-  mask: none !important;
+html.vk2015 .ConvoHistory__messageBlock { position: relative !important; }
+
+html.vk2015 .vk2015-ava {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  background: #e1e5ea;
+}
+html.vk2015 .vk2015-ava img {
+  display: block;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 2px !important;
+}
+
+html.vk2015 .ConvoHistory__messageBlock > .vk2015-ava ~ .ConvoHistory__messageWrapper {
+  margin-left: 48px !important;
+}
+
+html.vk2015 .vk2015-name {
+  margin-bottom: 1px;
+  color: #2b587a;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.3;
 }
