@@ -1,16 +1,11 @@
-// Скрипт поверх vk.ru: включает скин, переименовывает меню и добавляет аватарки с именами в личных диалогах
-
 const ROOT_CLASS = "vk2015";
 
-// Включаем сразу, чтобы не мигал новый дизайн; если скин выключен в настройках, снимаем класс
-document.documentElement.classList.add(ROOT_CLASS);
+document.documentElement.classList.add(ROOT_CLASS);  // это сразу включает скин
 chrome.storage.local.get("enabled").then(({ enabled = true }) => {
   if (!enabled) document.documentElement.classList.remove(ROOT_CLASS);
 });
 
-/* ---------- Левое меню: названия как в 2015 году ---------- */
-
-const LABELS = {
+const LABELS = {  // это названия пунктов меню как в 2015
   "Профиль": "Моя Страница",
   "Лента": "Мои Новости",
   "Новости": "Мои Новости",
@@ -27,8 +22,7 @@ const LABELS = {
   "Игры": "Мои Игры"
 };
 
-// Где искать меню. Если ВК поменяет вёрстку, достаточно поправить этот список
-const MENU_SELECTORS = ["#layout_sidebar"];
+const MENU_SELECTORS = ["#layout_sidebar"];  // это где искать меню
 
 function renameMenu() {
   if (!document.documentElement.classList.contains(ROOT_CLASS)) return;
@@ -43,10 +37,6 @@ function renameMenu() {
   });
 }
 
-/* ---------- Личные диалоги: аватарка и имя у каждой серии сообщений ---------- */
-// Современный ВК в личных диалогах не подписывает сообщения, из-за этого непонятно, где чьё.
-// В 2015 году у каждой серии сообщений были аватарка и имя автора. В групповых чатах ВК делает это сам.
-
 let groupCheck = { t: 0, value: false };
 
 function isGroupChat(main) {
@@ -57,13 +47,13 @@ function isGroupChat(main) {
   return groupCheck.value;
 }
 
-function decorateMessages() {
+function decorateMessages() {  // это авы и имена в диалогах
   if (!document.documentElement.classList.contains(ROOT_CLASS)) return;
 
   const main = document.querySelector(".ConvoMain");
-  if (!main || isGroupChat(main)) return;
+  if (!main) return;
+  const group = isGroupChat(main);
 
-  // всё, что вне списка сообщений (то есть шапка диалога), даёт данные о собеседнике
   const outside = (selector) =>
     [...main.querySelectorAll(selector)].find((e) => !e.closest(".ConvoHistory"));
 
@@ -76,20 +66,18 @@ function decorateMessages() {
   const mySrc = mine ? mine.src : "";
 
   main.querySelectorAll("article.ConvoHistory__messageBlock").forEach((art) => {
-    if (art.querySelector('[class*="Avatar"]')) return; // родная аватарка уже есть
+    const out = art.classList.contains("ConvoHistory__messageBlock--out");
+    if (group && !out) return;  // это чужие авы в группах рисует вк сам
+    if (art.querySelector('[class*="Avatar"]')) return;
 
     const wrap = art.querySelector(":scope > .ConvoHistory__messageWrapper");
     const content = art.querySelector(".ConvoMessage__content");
     if (!wrap || !content) return;
 
-    const out = art.classList.contains("ConvoHistory__messageBlock--out");
-
-    // первое ли это сообщение в серии от одного автора
     const prevItem = art.closest(".VirtualScrollItem")?.previousElementSibling;
     const prev = prevItem && prevItem.querySelector("article.ConvoHistory__messageBlock");
-    const first = !prev || prev.classList.contains("ConvoHistory__messageBlock--out") !== out;
+    const first = !prev || prev.classList.contains("ConvoHistory__messageBlock--out") !== out;  // это начало серии
 
-    // аватарка
     let ava = art.querySelector(":scope > .vk2015-ava");
     if (!ava) {
       ava = document.createElement("div");
@@ -97,12 +85,12 @@ function decorateMessages() {
       ava.appendChild(document.createElement("img"));
       art.insertBefore(ava, wrap);
     }
+    ava.classList.toggle("vk2015-ava--group", group);
     const src = out ? mySrc : peerSrc;
     const img = ava.firstChild;
     if (src && img.getAttribute("src") !== src) img.setAttribute("src", src);
     ava.style.visibility = first && src ? "visible" : "hidden";
 
-    // имя автора
     let name = content.querySelector(":scope > .vk2015-name");
     if (!name) {
       name = document.createElement("div");
@@ -115,9 +103,7 @@ function decorateMessages() {
   });
 }
 
-/* ---------- Следим за страницей: ВК дорисовывает интерфейс динамически ---------- */
-
-let scheduled = false;
+let scheduled = false;  // это следим за страницей не чаще раза за кадр
 new MutationObserver(() => {
   if (scheduled) return;
   scheduled = true;

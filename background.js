@@ -1,5 +1,4 @@
-// Клик по иконке расширения включает или выключает скин и перезагружает вкладку
-chrome.action.onClicked.addListener(async (tab) => {
+chrome.action.onClicked.addListener(async (tab) => {  // это клик по иконке включает и выключает скин
   const { enabled = true } = await chrome.storage.local.get("enabled");
   await chrome.storage.local.set({ enabled: !enabled });
   chrome.action.setBadgeText({ text: enabled ? "off" : "" });
