@@ -120,6 +120,51 @@ function markTabIcons() {  // это вкладки профиля: метка �
   });
 }
 
+const ringChecked = new WeakSet();
+
+function markRings() {  // это рамка вокруг авы шире самой авы, ставим метку, css делает её квадратной
+  if (!document.documentElement.classList.contains(ROOT_CLASS)) return;
+  const found = [];
+  document.querySelectorAll('[class*="RichAvatar"] > div > div').forEach((el) => {
+    if (ringChecked.has(el)) return;
+    const w = el.getBoundingClientRect().width;
+    if (!w) return;
+    ringChecked.add(el);
+    if (w > el.parentElement.getBoundingClientRect().width + 1) found.push(el);
+  });
+  found.forEach((el) => { el.dataset.vk2015Ring = "1"; });
+}
+
+const MENU_ICONS = { "Контакты": "contacts", "Важные сообщения": "star", "Архив": "archive", "Бизнес-уведомления": "briefcase", "Настройки": "gear" };
+const menuChecked = new WeakSet();
+
+function markMessengerMenu() {  // это меню мессенджера: метки на иконки по названию и на сам блок меню
+  if (!document.documentElement.classList.contains(ROOT_CLASS)) return;
+
+  document.querySelectorAll(".ActionsMenuAction").forEach((btn) => {
+    const title = btn.querySelector(".ActionsMenuAction__title");
+    const ico = btn.querySelector(".ActionsMenuAction__icon");
+    const key = title && MENU_ICONS[title.textContent.trim()];
+    if (key && ico && ico.dataset.vk2015Ico !== key) ico.dataset.vk2015Ico = key;
+
+    if (menuChecked.has(btn)) return;
+    menuChecked.add(btn);
+    for (let e = btn.parentElement, i = 0; e && i < 8; e = e.parentElement, i++) {
+      if (parseFloat(getComputedStyle(e).borderTopLeftRadius) >= 6) {  // это самый ближний блок со скруглением, это и есть табличка
+        e.dataset.vk2015Menu = "1";
+        break;
+      }
+    }
+  });
+
+  const top = document.querySelector(".ConvoList__topMenu");
+  if (top) {
+    const btns = [...top.querySelectorAll("button")];
+    const keys = ["phone", "archive", "compose"];
+    if (btns.length === 3) btns.forEach((b, i) => { if (b.dataset.vk2015Top !== keys[i]) b.dataset.vk2015Top = keys[i]; });
+  }
+}
+
 let scheduled = false;  // это следим за страницей не чаще раза за кадр
 new MutationObserver(() => {
   if (scheduled) return;
@@ -129,6 +174,8 @@ new MutationObserver(() => {
     renameMenu();
     decorateMessages();
     markTabIcons();
+    markRings();
+    markMessengerMenu();
   });
 }).observe(document.documentElement, { childList: true, subtree: true });
 
@@ -136,4 +183,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renameMenu();
   decorateMessages();
   markTabIcons();
+  markRings();
+  markMessengerMenu();
 });
