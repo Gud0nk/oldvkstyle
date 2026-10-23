@@ -95,18 +95,28 @@ function decorateMessages() {  // это авы и имена в диалога�
     if (src && img.getAttribute("src") !== src) img.setAttribute("src", src);
     ava.style.visibility = first && src ? "visible" : "hidden";
 
-    let name = content.querySelector(":scope > .vk2015-name");
+    let name = wrap.querySelector(":scope > .vk2015-name");  // это имя над сообщением, а не внутри: так фото не наедет
     if (!name) {
       name = document.createElement("div");
       name.className = "vk2015-name";
-      content.insertBefore(name, content.firstChild);
+      wrap.insertBefore(name, wrap.firstChild);
     }
     const label = out ? "Вы" : peerName;
     if (name.textContent !== label) name.textContent = label;
     name.style.display = first ? "block" : "none";
+    name.classList.toggle("vk2015-name--on", first);
+  });
+}
 
-    const msg = art.querySelector(".ConvoMessage");
-    if (msg) msg.classList.toggle("ConvoMessage--withAuthorName", first);  // это как у чужих: вк сам отодвигает фото и вложения под имя
+const TAB_ICONS = { "Фото": "photo", "Музыка": "music", "Видео": "video", "Альбомы": "albums", "Клипы": "clips", "Статьи": "articles" };
+
+function markTabIcons() {  // это вкладки профиля: метка по названию, иконку рисует css
+  if (!document.documentElement.classList.contains(ROOT_CLASS)) return;
+  document.querySelectorAll('[class*="TabsMenu__menuItem"]').forEach((label) => {
+    const key = TAB_ICONS[label.textContent.trim()];
+    const tab = label.closest(".vkuiInternalTappable");
+    const ico = tab && tab.firstElementChild;
+    if (key && ico && ico.dataset.vk2015Ico !== key) ico.dataset.vk2015Ico = key;
   });
 }
 
@@ -118,10 +128,12 @@ new MutationObserver(() => {
     scheduled = false;
     renameMenu();
     decorateMessages();
+    markTabIcons();
   });
 }).observe(document.documentElement, { childList: true, subtree: true });
 
 document.addEventListener("DOMContentLoaded", () => {
   renameMenu();
   decorateMessages();
+  markTabIcons();
 });

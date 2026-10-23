@@ -167,7 +167,7 @@ html.vk2015 #layout_sidebar li[id^="l_"] > a:hover {
 html.vk2015 #layout_sidebar li[id^="l_"] svg { color: #8ba1b8 !important; }
 
 html.vk2015 [class*="Avatar"],
-html.vk2015 [class*="Avatar"] * {
+html.vk2015 [class*="Avatar"] > * {
   border-radius: 2px !important;
   clip-path: none !important;
   -webkit-mask: none !important;
@@ -546,3 +546,43 @@ html.vk2015 .ConvoComposer__sendButton--mic .ConvoComposer__buttonIcon--edit::be
 html.vk2015 .ConvoStack__author {  /* это ава автора в группе чуть от края*/
   translate: 8px -2px !important;
 }
+
+html.vk2015 .vk2015-name--on + .ConvoMessage .ConvoMessage__info {  /* это время на уровне имени*/
+  top: -18px !important;
+}
+
+html.vk2015 .vkui-align-self-start:has(.vkitInternalRichAvatar) {  /* это без круглой рамки за авой профиля*/
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+html.vk2015 .vkui-align-self-start:has(.vkitInternalRichAvatar)::before,
+html.vk2015 .vkui-align-self-start:has(.vkitInternalRichAvatar)::after {
+  display: none !important;
+}
+
+html.vk2015 [class*="RichAvatar"] button {
+  border-radius: 50% !important;
+}
+
+html.vk2015 [data-vk2015-ico] svg {  /* это иконки вкладок профиля, метку ставит content.js*/
+  display: none !important;
+}
+
+html.vk2015 [data-vk2015-ico]::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask: center / 18px 18px no-repeat;
+  mask: center / 18px 18px no-repeat;
+}
+
+html.vk2015 [data-vk2015-ico="photo"]::before { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Crect%20x='2.5'%20y='4'%20width='15'%20height='12'%20rx='1.5'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Ccircle%20cx='7'%20cy='8.5'%20r='1.3'%20fill='black'/%3E%3Cpath%20d='M3%2015l4.5-4%203%202.5%203-3L17%2014'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Crect%20x='2.5'%20y='4'%20width='15'%20height='12'%20rx='1.5'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Ccircle%20cx='7'%20cy='8.5'%20r='1.3'%20fill='black'/%3E%3Cpath%20d='M3%2015l4.5-4%203%202.5%203-3L17%2014'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"); }
+html.vk2015 [data-vk2015-ico="music"]::before { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Cpath%20d='M8%2014V4.5l8-1.5v10'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Ccircle%20cx='6'%20cy='14.5'%20r='2.2'%20fill='black'/%3E%3Ccircle%20cx='14'%20cy='13'%20r='2.2'%20fill='black'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Cpath%20d='M8%2014V4.5l8-1.5v10'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Ccircle%20cx='6'%20cy='14.5'%20r='2.2'%20fill='black'/%3E%3Ccircle%20cx='14'%20cy='13'%20r='2.2'%20fill='black'/%3E%3C/svg%3E"); }
+html.vk2015 [data-vk2015-ico="video"]::before { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Crect%20x='2.5'%20y='4.5'%20width='15'%20height='11'%20rx='1.5'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Cpath%20d='M8.5%207.5l4.5%202.5-4.5%202.5z'%20fill='black'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Crect%20x='2.5'%20y='4.5'%20width='15'%20height='11'%20rx='1.5'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Cpath%20d='M8.5%207.5l4.5%202.5-4.5%202.5z'%20fill='black'/%3E%3C/svg%3E"); }
+html.vk2015 [data-vk2015-ico="albums"]::before { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Crect%20x='2.5'%20y='6.5'%20width='15'%20height='10'%20rx='1.5'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Cpath%20d='M5%203.800h10'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Crect%20x='2.5'%20y='6.5'%20width='15'%20height='10'%20rx='1.5'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Cpath%20d='M5%203.800h10'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"); }
+html.vk2015 [data-vk2015-ico="clips"]::before { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Crect%20x='5.5'%20y='2.5'%20width='9'%20height='15'%20rx='2'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Cpath%20d='M9%208l3%202-3%202z'%20fill='black'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Crect%20x='5.5'%20y='2.5'%20width='9'%20height='15'%20rx='2'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3Cpath%20d='M9%208l3%202-3%202z'%20fill='black'/%3E%3C/svg%3E"); }
+html.vk2015 [data-vk2015-ico="articles"]::before { -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Cpath%20d='M3%205h14M3%2010h14M3%2015h9'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2020%2020'%20width='20'%20height='20'%3E%3Cpath%20d='M3%205h14M3%2010h14M3%2015h9'%20fill='none'%20stroke='black'%20stroke-width='1.6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"); }
