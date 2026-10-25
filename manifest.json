@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "OLD-VK",
   "version": "1.0",
-  "description": "Расширение для возвращения старого стиля вк",
+  "description": "Расширение для возвращения старого стиля вк. Автор: Gud0nk",
   "permissions": ["storage"],
   "background": { "service_worker": "background.js" },
   "icons": {
